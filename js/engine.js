@@ -424,6 +424,8 @@ export function boot() {
   // 立绘点击：隐藏/复原 文字界面，查看完整立绘与背景
   $('#stage').addEventListener('click', () => toggleReveal());
   $('#btn-reveal').addEventListener('click', (e) => { e.stopPropagation(); toggleReveal(); });
+  // 兜底逃生：Esc 键退出看立绘模式
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && reveal) toggleReveal(); });
 
   $('#btn-status').addEventListener('click', () => $('#status-panel').classList.toggle('open'));
   $('#btn-save').addEventListener('click', saveNow);
