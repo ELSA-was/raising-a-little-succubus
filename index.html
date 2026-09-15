@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>养成一个小魅魔 · 现代魅魔万人迷恋爱养成</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="app">
+
+  <img id="bg" src="assets/bg/bg_bedroom.jpg" alt="" />
+  <div id="bg-vignette"></div>
+  <div id="sprites"></div>
+  <div id="stage"></div>
+
+  <!-- 顶栏 -->
+  <div id="topbar">
+    <div>
+      <div id="chapter">序章 · 红光</div>
+      <div id="time"></div>
+    </div>
+    <div id="stage-flag">蛋期</div>
+    <div id="top-tools">
+      <button class="tool" id="btn-reveal">👁 看立绘</button>
+      <button class="tool" id="btn-status">📊 状态</button>
+      <button class="tool" id="btn-save">💾 存档</button>
+      <button class="tool" id="btn-load">📂 读档</button>
+      <button class="tool" id="btn-gallery2">🏆 图鉴</button>
+      <button class="tool" id="btn-settings">⚙</button>
+    </div>
+  </div>
+
+  <!-- 对话框 -->
+  <div id="dialogue-wrap">
+    <div id="speaker" style="display:none"></div>
+    <div id="dialogue"></div>
+    <div id="choices"></div>
+  </div>
+
+  <div id="reveal-hint">点击任意处复原文字界面</div>
+
+  <!-- 状态面板 -->
+  <div id="status-panel">
+    <h3>📊 许沅 · 状态</h3>
+    <div id="status-rows"></div>
+    <div class="meta"><span>成长阶段</span><span id="status-stage">蛋期</span></div>
+    <div class="meta"><span>魅魔性格倾向</span><span id="status-persona">—</span></div>
+  </div>
+
+  <!-- 设置 -->
+  <div id="settings">
+    <h3 style="font-size:14px;color:var(--gold);margin-bottom:8px">⚙ 设置</h3>
+    <label><span>R18 成人内容</span><input type="checkbox" id="set-r18" checked /></label>
+    <label><span>背景音乐 BGM</span><input type="checkbox" id="set-bgm" /></label>
+    <label><span>音量</span><input type="range" id="set-vol" min="0" max="1" step="0.05" value="0.5" /></label>
+    <button class="tool" id="settings-close" style="margin-top:8px;width:100%">关闭</button>
+    <button class="tool" id="btn-title" style="margin-top:8px;width:100%">↩ 返回标题</button>
+    <button class="tool" id="btn-restart" style="margin-top:8px;width:100%">↺ 重新开始</button>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- 18+ 门槛 -->
+  <div id="screen-gate" class="overlay active">
+    <div class="deco" style="font-size:54px">🜲</div>
+    <h1>养成一个小魅魔</h1>
+    <div class="sub">现代魅魔 · 万人迷 · 女性向恋爱养成</div>
+    <div class="warn">
+      本游戏为<strong>成人向（18+）</strong>恋爱养成文字游戏，包含露骨的 R18 剧情描写，
+      仅限已满 18 周岁者游玩。游戏世界观设定为架空现代都市，唯一奇幻因素为「魅魔」，
+      幼儿期 / 成长期角色<strong>绝不涉及</strong>任何性相关内容；所有 R18 内容均发生在成年角色之间。<br><br>
+      如您未满 18 岁，请关闭本页面。
+    </div>
+    <label id="gate-r18"><input type="checkbox" id="gate-r18-cb" checked /> 我已年满 18 岁，并确认开启 R18 内容</label>
+    <button class="bigbtn" id="gate-enter" style="margin-top:18px">进入游戏 ▸</button>
+  </div>
+
+  <!-- 标题 -->
+  <div id="screen-title" class="overlay">
+    <div class="deco">🜲</div>
+    <h1>养成一个小魅魔</h1>
+    <div class="sub">从一枚会呼吸的蛋开始，把他养大，也被四个男人同时爱着。</div>
+    <button class="bigbtn" id="btn-start-new">开始新游戏 ▸</button>
+    <button class="bigbtn ghost" id="btn-continue" style="display:none">继续上次进度</button>
+    <button class="bigbtn ghost" id="btn-gallery">🏆 结局图鉴</button>
+  </div>
+
+  <!-- 结局图鉴 -->
+  <div id="screen-gallery" class="overlay">
+    <h1 style="font-size:26px">🏆 结局图鉴</h1>
+    <div class="sub">长结局 5 · 短结局 9 · 共 14 个分支结局</div>
+    <div id="gallery"></div>
+    <button class="bigbtn ghost" id="gallery-close" style="margin-top:16px">返回</button>
+  </div>
+
+</div>
+
+<script type="module">
+  import { boot, _newGame } from './js/engine.js';
+  boot();
+  document.getElementById('btn-start-new').addEventListener('click', () => _newGame());
+</script>
+</body>
+</html>
